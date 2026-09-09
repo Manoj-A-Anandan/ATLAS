@@ -4,6 +4,7 @@ import org.automation.analyzer.TestAnalyzer;
 import org.automation.model.FailureType;
 import org.automation.model.TestResult;
 import org.automation.model.TestStatus;
+import org.automation.report.AtlasReport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +38,8 @@ public class Main {
                 "Payment failure."
         ));
 
-        TestAnalyzer analyzer = new TestAnalyzer();
+        AtlasReport report = new AtlasReport();
 
-        String analysis = analyzer.analyze(results);
-
-        System.out.println("================================");
-        System.out.println("        ATLAS ANALYSIS");
-        System.out.println("================================");
-
-        System.out.println(analysis);
+        report.generateReport(results);
     }
 }
