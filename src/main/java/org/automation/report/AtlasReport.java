@@ -1,6 +1,7 @@
 package org.automation.report;
 
 import org.automation.analyzer.TestAnalyzer;
+import org.automation.model.FailureAnalysis;
 import org.automation.model.FailureType;
 import org.automation.model.TestResult;
 import org.automation.model.TestStatus;
@@ -35,14 +36,17 @@ public class AtlasReport {
             double duration = result.getDuration();
             String error = result.getErrorMessage();
 
-            String analysis = analyzer.analyze(result);
+            FailureAnalysis analysis = analyzer.analyze(result);
 
             System.out.println(
                     sNo++ + ". " + result.getTestName() + "\n"
                             + "   Failure Type : " + failureType + "\n"
                             + "   Duration     : " + duration + " sec\n"
                             + "   Error        : " + error + "\n"
-                            + "   ATLAS Analysis: " + analysis + "\n"
+                            + "   Category       : " + analysis.getCategory() + "\n"
+                            + "   Confidence     : " + analysis.getConfidence() + "\n"
+                            + "   ATLAS Analysis : " + analysis.getAnalysis() + "\n"
+                            + "   Recommendation : " + analysis.getRecommendation() + "\n"
             );
         }
     }
